@@ -1,4 +1,3 @@
-# k8s/06-quota.yaml
 apiVersion: v1
 kind: LimitRange
 metadata:
