@@ -1,0 +1,32 @@
+# k8s/06-quota.yaml
+apiVersion: v1
+kind: LimitRange
+metadata:
+  name: travelo-limitrange
+  namespace: travelo
+spec:
+  limits:
+    - type: Container
+      defaultRequest:
+        cpu: "100m"
+        memory: "128Mi"
+      default:
+        cpu: "500m"
+        memory: "512Mi"
+      max:
+        cpu: "1"
+        memory: "1Gi"
+---
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: travelo-quota
+  namespace: travelo
+spec:
+  hard:
+    requests.cpu: "2"
+    requests.memory: 3Gi
+    limits.cpu: "5"
+    limits.memory: 5Gi
+    pods: "20"
+
